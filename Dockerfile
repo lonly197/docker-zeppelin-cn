@@ -22,14 +22,20 @@ ENV	ZEPPELIN_HOME=/opt/zeppelin \
 	PATH=$PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
 
 RUN	set -x \
+	## fix 'ERROR: http://dl-cdn.alpinelinux.org/alpine/v3.6/main: BAD archive'
+    && echo http://mirrors.aliyun.com/alpine/v3.6/main/ >> /etc/apk/repositories \
+    && echo http://mirrors.aliyun.com/alpine/v3.6/community/>> /etc/apk/repositories \
+	&& apk update \
+	&& apk add --no-cache --upgrade ca-certificates wget openssl \
+	&& update-ca-certificates \
 	## download update tar
-    $$ mkdir -p ${TEMP} \
+    && mkdir -p ${TEMP} \
 	&& wget -P ${TEMP}/ ${UPDATE_TAR} \
 	&& unzip -o ${TEMP}/chinesization.zip -d ${TEMP}/ \
 	&& rsync -avhP  ${TEMP}/zeppelin-web-chinesization/* ${ZEPPELIN_HOME}/webapps/webapp/ \
 	## cleanup
 	&& rm -rf /var/cache/* \
-	&& rm -rf ${TEMP}/* 
+	&& rm -rf ${TEMP}/*
 
 EXPOSE	8080 8443
 
