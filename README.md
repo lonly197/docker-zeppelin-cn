@@ -49,11 +49,6 @@ This image can either be used as a base image for building on top of NiFi or jus
 
 Please use corresponding branches from this repo to play with code.
 
-# Build Docker Image
-
-docker build --rm --build-arg BUILD_DATE=$(date +'%m/%d/%Y') --build-arg VERSION=0.7.3 --build-arg UPDATE_TAR=https://github.com/lonly197/zeppelin-web/archive/chinesization.zip -t lonly/docker-zeppelin .
-
-
 # Pre-Requisites
 Ensure the following pre-requisites are met (due to some blocker bugs in earlier versions). As of today, the latest Docker Toolbox and Homebrew are fine.
 
@@ -65,7 +60,7 @@ Ensure the following pre-requisites are met (due to some blocker bugs in earlier
 # How to use from Docker CLI
 
 1. Start Docker Quickstart Terminal
-2. Run command  `docker run -d -p 8080:8080 -p 8443:8443 lonly/docker-zeppelin-cn`
+2. Run command  `docker run -d -p 8080:8080 -p 8443:8443 --name zeppelin lonly/docker-zeppelin-cn`
 3. Check Docker Running Status  `docker ps -a`
 4. Use IP from previous step in address bar of your favorite browser, e.g. ` http://192.168.1.1:8080/#/`
 
