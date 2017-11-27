@@ -26,7 +26,7 @@ RUN	set -x \
     && echo http://mirrors.aliyun.com/alpine/v3.6/main/ >> /etc/apk/repositories \
     && echo http://mirrors.aliyun.com/alpine/v3.6/community/>> /etc/apk/repositories \
 	&& apk update \
-	&& apk add --no-cache --upgrade ca-certificates wget openssl \
+	&& apk add --no-cache --upgrade ca-certificates openssl wget rsync \
 	&& update-ca-certificates \
 	## download update tar
     && mkdir -p ${TEMP} \
