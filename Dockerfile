@@ -18,7 +18,11 @@ ENV	ZEPPELIN_HOME=/opt/zeppelin
 
 RUN	set -x \
 	## download update tar
-	&& cd ${ZEPPELIN_HOME}/webapps/webapp/ && wget https://github.com/lonly197/zeppelin-web/archive/chinesization.tar.gz -O chinesization.tar.gz && tar xvf chinesization.tar.gz --strip 1 && rm -rf chinesization.tar.gz
+	&& mkdir -p ${ZEPPELIN_HOME}/webapps/webapp/ \
+	&& cd ${ZEPPELIN_HOME}/webapps/webapp/ \
+	&& wget https://github.com/lonly197/zeppelin-web/archive/chinesization.tar.gz -O chinesization.tar.gz \
+	&& tar xvf chinesization.tar.gz --strip 1 \
+	&& rm -rf chinesization.tar.gz
 
 EXPOSE	8080 8443
 
