@@ -18,7 +18,7 @@ ENV	ZEPPELIN_HOME=/opt/zeppelin
 
 RUN	set -x \
 	## install base package for interpreter
-    && apk add --no-cache --upgrade build-base gfortran python2 python2-dev py2-pip freetype-dev libpng-dev python2-tkinter lapack-dev libxml2-dev ibxslt-dev jpeg-dev \
+    && apk add --no-cache --upgrade build-base gfortran python2 python2-dev py2-pip freetype-dev libpng-dev python2-tkinter lapack-dev libxml2-dev libxslt-dev jpeg-dev \
 	## update pip
 	&& pip install --upgrade --no-cache-dir pip \
 	## pip install pakcate
