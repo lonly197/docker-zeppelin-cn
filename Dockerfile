@@ -17,17 +17,23 @@ LABEL \
 ENV	ZEPPELIN_HOME=/opt/zeppelin
 
 RUN	set -x \
-	## unzip war
-	&& mkdir -p ${ZEPPELIN_HOME}/webapp \
-	&& unzip -oq ${ZEPPELIN_HOME}/zeppelin-web-${VERSION}.war -d ${ZEPPELIN_HOME}/webapp \
+	## enter work dir
+	&& cd ${ZEPPELIN_HOME} \
+	## unzip war	
+	&& mkdir -p webapp \
+	&& unzip -oq zeppelin-web-${VERSION}.war -d webapp \
+	## remove old war
+	&& rm -rf zeppelin-web-${VERSION}.war \
 	## download update tar
-	&& cd ${ZEPPELIN_HOME}/webapp/ \
+	&& cd ./webapp/ \
 	&& wget https://github.com/lonly197/zeppelin-web/archive/chinesization.tar.gz -O chinesization.tar.gz \
 	&& tar xvf chinesization.tar.gz --strip 1 \
 	&& rm -rf chinesization.tar.gz \
 	## zip war
-	&& cd ${ZEPPELIN_HOME} \
 	&& jar -cvfM0 zeppelin-web-${VERSION}.war ${ZEPPELIN_HOME}/webapp \
+	&& mv zeppelin-web-${VERSION}.war ${ZEPPELIN_HOME}/ \
+	## exit work dir
+	&& cd / \
 	## clean
 	&& rm -rf ${ZEPPELIN_HOME}/webapp \
 	&& rm -rf /tmp/*
