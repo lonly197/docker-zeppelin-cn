@@ -64,4 +64,6 @@ Ensure the following pre-requisites are met (due to some blocker bugs in earlier
 3. Check Docker Running Status  `docker ps -a`
 4. Use IP from previous step in address bar of your favorite browser, e.g. ` http://192.168.1.1:8080/#/`
 
-# Enjoy! :)
+# Contact me
+
+- Email: <lonly197@gamil.com>
