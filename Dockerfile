@@ -18,7 +18,7 @@ ENV	ZEPPELIN_HOME=/opt/zeppelin
 
 RUN	set -x \
 	## unzip war
-	&& midr -p ${ZEPPELIN_HOME}/webapp \
+	&& mkdir -p ${ZEPPELIN_HOME}/webapp \
 	&& unzip -oq ${ZEPPELIN_HOME}/zeppelin-web-${VERSION}.war -d ${ZEPPELIN_HOME}/webapp \
 	## download update tar
 	&& cd ${ZEPPELIN_HOME}/webapp/ \
