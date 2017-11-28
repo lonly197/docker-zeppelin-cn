@@ -27,9 +27,9 @@ RUN	set -x \
 	## enter webapp dir
 	&& cd ./webapp/ \
 	## download update tar
-	&& wget https://github.com/lonly197/zeppelin-web/archive/chinesization.tar.gz -O chinesization.tar.gz \
-	&& tar xvf chinesization.tar.gz --strip 1 \
-	&& rm -rf chinesization.tar.gz \
+	&& wget https://github.com/lonly197/zeppelin-web/archive/${VERSION}-cn.tar.gz -O ${VERSION}-cn.tar.gz \
+	&& tar xvf ${VERSION}-cn.tar.gz --strip 1 \
+	&& rm -rf ${VERSION}-cn.tar.gz \
 	## zip war
 	&& jar -cvfM0 zeppelin-web-${VERSION}.war ./* \
 	&& mv zeppelin-web-${VERSION}.war ${ZEPPELIN_HOME}/ \
