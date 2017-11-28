@@ -1,7 +1,7 @@
-FROM  lonly/docker-zeppelin-base:0.7.3
+FROM  lonly/docker-zeppelin-base:0.7.2
 
 ARG	 BUILD_DATE
-ARG	 VERSION=0.7.3
+ARG	 VERSION=0.7.2
 
 LABEL \
 	maintainer="lonly197@qq.com" \
