@@ -17,6 +17,12 @@ LABEL \
 ENV	ZEPPELIN_HOME=/opt/zeppelin
 
 RUN	set -x \
+	## install base package for interpreter
+    && apk add --no-cache --upgrade build-base gfortran python2 python2-dev py2-pip freetype-dev libpng-dev python2-tkinter lapack-dev libxml2-dev ibxslt-dev jpeg-dev \
+	## update pip
+	&& pip install --upgrade --no-cache-dir pip \
+	## pip install pakcate
+	&& pip install --upgrade --no-cache-dir py4j numpy scipy pandas matplotlib \
 	## enter work dir
 	&& cd ${ZEPPELIN_HOME} \
 	## unzip war	
