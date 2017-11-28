@@ -24,13 +24,14 @@ RUN	set -x \
 	&& unzip -oq zeppelin-web-${VERSION}.war -d webapp \
 	## remove old war
 	&& rm -rf zeppelin-web-${VERSION}.war \
-	## download update tar
+	## enter webapp dir
 	&& cd ./webapp/ \
+	## download update tar
 	&& wget https://github.com/lonly197/zeppelin-web/archive/chinesization.tar.gz -O chinesization.tar.gz \
 	&& tar xvf chinesization.tar.gz --strip 1 \
 	&& rm -rf chinesization.tar.gz \
 	## zip war
-	&& jar -cvfM0 zeppelin-web-${VERSION}.war ${ZEPPELIN_HOME}/webapp \
+	&& jar -cvfM0 zeppelin-web-${VERSION}.war ./* \
 	&& mv zeppelin-web-${VERSION}.war ${ZEPPELIN_HOME}/ \
 	## exit work dir
 	&& cd / \
