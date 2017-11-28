@@ -23,17 +23,16 @@ Deployment options out of the box:
 - 8080 - Zeppelin web application port
 - 8443 - Zeppelin web application secure port
 
-
 # Volumes
 
 All below volumes can be mounted to docker host machine folders or shared folders to easy maintain data inside them. 
 
 Zeppelin-specific:
+- /opt/zeppelin/conf
 - /opt/zeppelin/logs
 - /opt/zeppelin/notebook
 - /opt/zeppelin/local-repo
 - /opt/zeppelin/helium
-
 
 # Official Documentation and Guides
 
@@ -41,7 +40,6 @@ Zeppelin-specific:
 - [Quick Start](http://zeppelin.apache.org/docs/0.7.3/install/install.html)
 - [Interpreters](http://zeppelin.apache.org/docs/0.7.3/manual/interpreters.html)
 - [Wiki](https://cwiki.apache.org/confluence/display/ZEPPELIN/Zeppelin+Home)
-
 
 # Usage
 

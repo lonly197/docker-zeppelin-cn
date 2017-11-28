@@ -47,7 +47,8 @@ RUN	set -x \
 
 EXPOSE	8080 8443
 
-VOLUME  ${ZEPPELIN_HOME}/logs \
+VOLUME  ${ZEPPELIN_HOME}/conf \
+	${ZEPPELIN_HOME}/logs \
 	${ZEPPELIN_HOME}/notebook \
 	${ZEPPELIN_HOME}/local-repo \
 	${ZEPPELIN_HOME}/helium
