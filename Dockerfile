@@ -22,12 +22,32 @@ LABEL \
 ENV	ZEPPELIN_HOME=/opt/zeppelin
 
 RUN	set -x \
-	## install base package for interpreter
-    && apk add --no-cache --upgrade build-base gfortran python2 python2-dev py2-pip freetype-dev libpng-dev python2-tkinter lapack-dev libxml2-dev libxslt-dev jpeg-dev \
+	## install base package
+    && apk add --no-cache --upgrade autoclean build-base libglib2.0-0 libxext6 libsm6 libxrender1 \
+	## install python
+	&& apk add --no-cache --upgrade python2 python2-dev py2-pip \
 	## update pip
 	&& pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade --no-cache-dir pip \
-	## pip install package
+	## install python related package
+	&& apk add --no-cache --upgrade gfortran \
+	## for numerical/algebra packages
+	&& apk add --no-cache --upgrade libblas-dev libatlas-dev liblapack-dev \
+	## for font, image for matplotlib
+	&& apk add --no-cache --upgrade libpng-dev libfreetype6-dev libxft-dev \
+	## for tkinter
+	&& apk add --no-cache --upgrade  python-tk libxml2-dev libxslt-dev zlib1g-dev \
+	## install numpy and matplotlib
 	&& pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade --no-cache-dir py4j numpy scipy pandas matplotlib \
+	## install R
+	&& apk add --no-cache --upgrade r-base r-base-dev libcurl4-gnutls-dev libssl-dev \
+	&& R -e "install.packages('knitr', repos='http://cran.us.r-project.org')" \
+    && R -e "install.packages('ggplot2', repos='http://cran.us.r-project.org')" \
+    && R -e "install.packages('googleVis', repos='http://cran.us.r-project.org')" \
+    && R -e "install.packages('data.table', repos='http://cran.us.r-project.org')" \
+	# install R for devtools, Rcpp
+    && R -e "install.packages('devtools', repos='http://cran.us.r-project.org')" \
+    && R -e "install.packages('Rcpp', repos='http://cran.us.r-project.org')" \
+    && Rscript -e "library('devtools'); library('Rcpp'); install_github('ramnathv/rCharts')" \
 	## enter work dir
 	&& cd ${ZEPPELIN_HOME} \
 	## unzip war	
@@ -48,6 +68,8 @@ RUN	set -x \
 	&& cd / \
 	## clean
 	&& rm -rf ${ZEPPELIN_HOME}/webapp \
-	&& rm -rf /tmp/*
+	&& rm -rf /tmp/* \
+	&& apk autoclean \
+	&& apk clean
 
 CMD	 ${ZEPPELIN_HOME}/bin/zeppelin.sh run
