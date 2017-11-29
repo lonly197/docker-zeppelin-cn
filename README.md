@@ -1,6 +1,6 @@
 # docker-zeppelin-cn
 
-Basic and clean [Docker](https://www.docker.com/what-docker) image for the chinesization of [Apache Zeppelin](http://zeppelin.apache.org), based on [Alpine](http://alpinelinux.org) and [OpenJDK](http://openjdk.java.net)
+Basic and clean [Docker](https://www.docker.com/what-docker) image for the chinesization of [Apache Zeppelin](http://zeppelin.apache.org), based on [Alpine](http://alpinelinux.org) and [OpenJDK](http://openjdk.java.net).
 
                         ##         .
                   ## ## ##        ==
