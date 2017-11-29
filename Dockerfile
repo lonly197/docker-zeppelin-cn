@@ -2,6 +2,7 @@ FROM  lonly/docker-zeppelin-base:0.7.2
 
 ARG	 BUILD_DATE
 ARG	 VERSION=0.7.2
+ARG  VCS_REF
 
 LABEL \
 	maintainer="lonly197@qq.com" \
@@ -10,9 +11,13 @@ LABEL \
 	org.label-schema.license="Apache License 2.0" \
 	org.label-schema.name="lonly/docker-zeppelin-cn" \
 	org.label-schema.url="https://github.com/lonly197" \
-	org.label-schema.vcs-type="Git" \
 	org.label-schema.version=$VERSION \
-	org.label-schema.vcs-url="https://github.com/lonly197/docker-zeppelin-cn"
+	org.label-schema.vendor="lonly197@qq.com" \
+	org.label-schema.description="Basic and clean Docker image for the chinesization of Apache Zeppelin, based on Alpine and OpenJDK." \
+	org.label-schema.vcs-type="Git" \
+	org.label-schema.vcs-url="https://github.com/lonly197/docker-zeppelin-cn" \
+	org.label-schema.vcs-ref=$VCS_REF \
+	org.label-schema.schema-version="1.0"
 
 ENV	ZEPPELIN_HOME=/opt/zeppelin
 
@@ -45,14 +50,4 @@ RUN	set -x \
 	&& rm -rf ${ZEPPELIN_HOME}/webapp \
 	&& rm -rf /tmp/*
 
-EXPOSE	8080 8443
-
-VOLUME  ${ZEPPELIN_HOME}/conf \
-	${ZEPPELIN_HOME}/logs \
-	${ZEPPELIN_HOME}/notebook \
-	${ZEPPELIN_HOME}/local-repo \
-	${ZEPPELIN_HOME}/helium
-
-WORKDIR	 ${ZEPPELIN_HOME}
-
-CMD	 ./bin/zeppelin.sh run
+CMD	 ${ZEPPELIN_HOME}/bin/zeppelin.sh run
