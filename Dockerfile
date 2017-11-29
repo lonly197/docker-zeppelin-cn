@@ -23,15 +23,11 @@ ENV	ZEPPELIN_HOME=/opt/zeppelin
 
 RUN	set -x \
 	## install python
-	&& apk add --no-cache --upgrade build-base python2 python2-dev py2-pip \
+	&& apk add --no-cache --upgrade python2 python2-dev py2-pip \
 	## update pip
 	&& pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade --no-cache-dir pip \
 	## install python related package
-	&& apk add --no-cache --upgrade gfortran freetype-dev \
-	## for font, image for matplotlib
-	&& apk add --no-cache --upgrade libpng-dev jpeg-dev libxft-dev \
-	## for tkinter
-	&& apk add --no-cache --upgrade python2-tkinter libxml2-dev libxslt-dev zlib-dev \
+	&& apk add --no-cache --upgrade build-base gfortran freetype-dev libpng-dev jpeg-dev python2-tkinter lapack-dev libxml2-dev libxslt-dev  zlib-dev \
 	## install numpy and matplotlib
 	&& pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade --no-cache-dir py4j numpy scipy pandas matplotlib \
 	## install R
