@@ -13,6 +13,11 @@ Basic and clean [Docker](https://www.docker.com/what-docker) image for the chine
 
 # Overview
 
+- ![Version](https://images.microbadger.com/badges/version/xemuliam/zeppelin:0.7.3.svg) ![Layers](https://images.microbadger.com/badges/image/xemuliam/zeppelin-base:0.7.3.svg) __0.7.3  = latest__
+- ![Version](https://images.microbadger.com/badges/version/xemuliam/zeppelin:0.7.2.svg) ![Layers](https://images.microbadger.com/badges/image/xemuliam/zeppelin-base:0.7.2.svg) __0.7.2__
+
+- ![Docker builds](https://img.shields.io/docker/automated/xemuliam/zeppelin.svg) ![Docker Pulls](https://img.shields.io/docker/pulls/xemuliam/zeppelin.svg) ![Docker Stars](https://img.shields.io/docker/stars/xemuliam/zeppelin.svg)
+
 Dockerized single-host Zeppelin.
 
 Deployment options out of the box:
@@ -57,7 +62,7 @@ Ensure the following pre-requisites are met (due to some blocker bugs in earlier
 # How to use from Docker CLI
 
 1. Start Docker Quickstart Terminal
-2. Run command  `docker run -d -p 8080:8080 -p 8443:8443 --name zeppelin lonly/docker-zeppelin-cn:0.7.3`
+2. Run command  `docker run -d -p 8080:8080 -p 8443:8443 --name zeppelin lonly/docker-zeppelin-cn`
 3. Check Docker Container Running Status  `docker ps -a`
 4. Use IP from previous step in address bar of your favorite browser, e.g. ` http://192.168.1.1:8080/#/`
 
