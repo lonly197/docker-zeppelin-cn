@@ -22,24 +22,20 @@ LABEL \
 ENV	ZEPPELIN_HOME=/opt/zeppelin
 
 RUN	set -x \
-	## install base package
-    && apk add --no-cache --upgrade autoclean build-base libglib2.0-0 libxext6 libsm6 libxrender1 \
 	## install python
-	&& apk add --no-cache --upgrade python2 python2-dev py2-pip \
+	&& apk add --no-cache --upgrade build-base python2 python2-dev py2-pip \
 	## update pip
 	&& pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade --no-cache-dir pip \
 	## install python related package
-	&& apk add --no-cache --upgrade gfortran \
-	## for numerical/algebra packages
-	&& apk add --no-cache --upgrade libblas-dev libatlas-dev liblapack-dev \
+	&& apk add --no-cache --upgrade gfortran freetype-dev \
 	## for font, image for matplotlib
-	&& apk add --no-cache --upgrade libpng-dev libfreetype6-dev libxft-dev \
+	&& apk add --no-cache --upgrade libpng-dev jpeg-dev libxft-dev \
 	## for tkinter
-	&& apk add --no-cache --upgrade  python-tk libxml2-dev libxslt-dev zlib1g-dev \
+	&& apk add --no-cache --upgrade python2-tkinter libxml2-dev libxslt-dev zlib-dev \
 	## install numpy and matplotlib
 	&& pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade --no-cache-dir py4j numpy scipy pandas matplotlib \
 	## install R
-	&& apk add --no-cache --upgrade r-base r-base-dev libcurl4-gnutls-dev libssl-dev \
+	&& apk add --no-cache --upgrade R R-dev R-doc lcurl-dev openssl-dev \
 	&& R -e "install.packages('knitr', repos='http://cran.us.r-project.org')" \
     && R -e "install.packages('ggplot2', repos='http://cran.us.r-project.org')" \
     && R -e "install.packages('googleVis', repos='http://cran.us.r-project.org')" \
@@ -68,8 +64,7 @@ RUN	set -x \
 	&& cd / \
 	## clean
 	&& rm -rf ${ZEPPELIN_HOME}/webapp \
-	&& rm -rf /tmp/* \
-	&& apk autoclean \
-	&& apk clean
+	&& rm -rf /var/cache/apk/* \
+	&& rm -rf /tmp/*
 
 CMD	 ${ZEPPELIN_HOME}/bin/zeppelin.sh run
