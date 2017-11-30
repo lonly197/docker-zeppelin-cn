@@ -31,7 +31,7 @@ RUN	set -x \
 	## install numpy and matplotlib
 	&& pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade --no-cache-dir py4j numpy scipy pandas matplotlib \
 	## install R
-	&& apk add --no-cache --upgrade R R-dev R-doc lcurl-dev openssl-dev \
+	&& apk add --no-cache --upgrade R R-dev R-doc curl-dev openssl-dev \
 	&& R -e "install.packages('knitr', repos='http://cran.us.r-project.org')" \
     && R -e "install.packages('ggplot2', repos='http://cran.us.r-project.org')" \
     && R -e "install.packages('googleVis', repos='http://cran.us.r-project.org')" \
